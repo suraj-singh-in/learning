@@ -1,11 +1,32 @@
+// Libraries
 import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
+
+// Controllers
 import { AppController } from './app.controller';
+
+// Servives
 import { AppService } from './app.service';
+
+// Modules
 import { UsersModule } from './users/users.module';
 import { ReportsModule } from './reports/reports.module';
 
+// Entities
+import { User } from './users/user.entity';
+import { Report } from './reports/report.entity';
+
 @Module({
-  imports: [UsersModule, ReportsModule],
+  imports: [
+    TypeOrmModule.forRoot({
+      type: 'sqlite',
+      database: 'db.sqlite',
+      entities: [Report, User],
+      synchronize: true,
+    }),
+    UsersModule,
+    ReportsModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
