@@ -1,5 +1,4 @@
 ### List all messages
-
 GET http://localhost:3000/messages
 
 ### Create a new message
@@ -11,5 +10,4 @@ Content-Type: application/json
 }
 
 ### Get a particular message
-
-GET http://localhost:3000/messages/sadd
+GET http://localhost:3000/messages/108
