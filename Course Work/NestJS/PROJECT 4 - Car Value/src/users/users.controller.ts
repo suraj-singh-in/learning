@@ -1,7 +1,6 @@
 // Libraries
 import {
   Body,
-  ClassSerializerInterceptor,
   Controller,
   Delete,
   Get,
@@ -10,26 +9,29 @@ import {
   Patch,
   Post,
   Query,
-  UseInterceptors,
 } from '@nestjs/common';
 
 // DTOs
-import { createUserDto } from './dtos/create-user.dto';
-import { updatedUserDto } from './dtos/update-user.dto';
+import { CreateUserDto } from './dtos/create-user.dto';
+import { UpdatedUserDto } from './dtos/update-user.dto';
+import { UserDto } from './/dtos/user.dto';
 
 // Services
 import { UsersService } from './users.service';
 
+// interceptors
+import { Serialize } from '../interceptors/serialize.interceptor';
+
+@Serialize(UserDto)
 @Controller('auth')
 export class UsersController {
   constructor(private usersService: UsersService) {}
 
   @Post('/signup')
-  createUser(@Body() body: createUserDto) {
+  createUser(@Body() body: CreateUserDto) {
     return this.usersService.create(body.email, body.password);
   }
 
-  @UseInterceptors(ClassSerializerInterceptor)
   @Get('/:id')
   async findUser(@Param('id') id: string) {
     let user = await this.usersService.findOne(parseInt(id));
@@ -47,7 +49,7 @@ export class UsersController {
   }
 
   @Patch('/:id')
-  updateUser(@Param('id') id: string, @Body() body: updatedUserDto) {
+  updateUser(@Param('id') id: string, @Body() body: UpdatedUserDto) {
     return this.usersService.update(parseInt(id), body);
   }
 
