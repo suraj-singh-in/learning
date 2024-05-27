@@ -6,3 +6,24 @@ Content-Type: application/json
     "email": "suraj@gmail.com",
     "password": "Suraj"
 }
+
+
+### find a User by id
+GET http://localhost:3000/auth/2
+
+
+### find a User by email
+GET http://localhost:3000/auth?email=suraj@gmail.com
+
+### Update a User
+PATCH  http://localhost:3000/auth/2
+Content-Type: application/json
+
+{
+    "email": "suraj@gmail.com",
+    "password": "SurajSingh"
+}
+
+
+### Remove User
+DELETE http://localhost:3000/auth/1
