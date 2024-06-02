@@ -3,7 +3,7 @@ POST http://localhost:3000/auth/signup
 Content-Type: application/json
 
 {
-    "email": "sin1@gmail.com",
+    "email": "1@gmail.com",
     "password": "Surajngh"
 }
 
@@ -12,9 +12,18 @@ POST http://localhost:3000/auth/signin
 Content-Type: application/json
 
 {
-    "email": "sin1@gmail.com",
+    "email": "1@gmail.com",
     "password": "Surajngh"
 }
+
+### who am i
+GET http://localhost:3000/auth/whoami
+
+
+
+### signout
+POST http://localhost:3000/auth/signout
+
 
 
 ### find a User by id
