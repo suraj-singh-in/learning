@@ -32,7 +32,7 @@ import { CurrentUser } from './decorators/current-user.decorator';
 import { User } from './user.entity';
 
 // guards
-import { AuthGaurd } from 'src/guards/auth.guard';
+import { AuthGaurd } from '../guards/auth.guard';
 
 @Serialize(UserDto)
 @Controller('auth')
@@ -58,7 +58,7 @@ export class UsersController {
   }
 
   @Post('/signin')
-  async sign(@Body() body: CreateUserDto, @Session() session: any) {
+  async signin(@Body() body: CreateUserDto, @Session() session: any) {
     const user = await this.authService.signin(body.email, body.password);
 
     session.userId = user.id;
